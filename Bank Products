@@ -45,3 +45,24 @@ WHERE product_type='Savings'
 AND interest_rate<0.75
 AND monthly_fee=0; 
 
+-- Find products with "youth" in the name
+SELECT product_name, interest_rate
+FROM bank_products
+WHERE product_name LIKE '%Youth%';
+
+-- List specific types of products
+SELECT product_name, description
+FROM bank_products
+WHERE product_name IN ('Premium Checking','High Yield Savings','Platinum Credit Card','Gold Credit Card');
+
+-- Find all products that start with "Business"
+SELECT product_name
+FROM bank_products
+WHERE product_name LIKE 'Business%';
+
+-- A customer wants a product with rewards
+SELECT product_name, description
+FROM bank_products
+WHERE product_name LIKE '%Rewards%' 
+OR description LIKE '%Rewards%';
+
