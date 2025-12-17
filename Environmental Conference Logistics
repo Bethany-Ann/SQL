@@ -171,9 +171,13 @@ LEFT JOIN hotels
 ON reservations.hotel=hotels.hotel_id
 WHERE vips.association = (SELECT vips.association FROM vips WHERE association LIKE '%US Department of Renewable Energy%');
 
--- SELF JOIN ??? NOT WORKING RIGHT!! INTENTION to show who each vip is giving feedback to and receiving from
+-- Show which VIPs are providing feedback to whom
 
-SELECT m.last_name AS participant, m.member_id AS receiving, f.provides_feedback_to AS giving
+SELECT m.member_id AS VIP_id,
+    m.last_name AS VIP_lastname,
+    f.member_id AS provides_feedback_to,
+    f.last_name AS receiver_last_name
 FROM vips AS m
 JOIN vips AS f
-ON m.member_id=f.provides_feedback_to;
+    ON f.provides_feedback_to = m.member_id
+
